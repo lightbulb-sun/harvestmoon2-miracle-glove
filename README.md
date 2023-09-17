@@ -4,7 +4,7 @@
 
 Starts the Game Boy Color game
 *Harvest Moon 2*
-with the Miracle Glove
+with the Miracle Glove in the tool box
 in accordance with this
 [romhacking.net forum post](https://www.romhacking.net/forum/index.php?msg=440345)
 by

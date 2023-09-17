@@ -1,12 +1,15 @@
-INVENTORY_SLOTS         equ     $ce22
+TOOLBOX                 equ     $cef5
 MIRACLE_GLOVE           equ     9
 
-SECTION "miracle_glove", ROMX[$41b0], BANK[$1f]
-miracle_glove:
-            ld      hl, INVENTORY_SLOTS+1       ; Empty inventory slots...
-            ld      [hl+], a                    ; 2, ...
-            ld      [hl+], a                    ; 3, ...
-            ld      [hl], a                     ; and 4.
-            ld      a, MIRACLE_GLOVE            ; Put miracle glove...
-            ld      [INVENTORY_SLOTS], a        ; into slot 1.
-            nop
+SECTION "empty_toolbox", ROMX[$45c9], BANK[5]
+            call    put_miracle_glove_into_toolbox
+
+SECTION "free_space", ROMX[$7f00], BANK[5]
+put_miracle_glove_into_toolbox::
+            ; replace original instruction
+            call    $12e8
+
+            ld      a, 1
+            ld      [TOOLBOX+MIRACLE_GLOVE], a
+
+            ret
